@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function LoveLetterSite() {
   const [won, setWon] = React.useState(false);
   const [target, setTarget] = React.useState(Math.floor(Math.random() * 9));

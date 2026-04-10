@@ -1,0 +1,56 @@
+export default function LoveLetterSite() {
+  const [won, setWon] = React.useState(false);
+  const [target, setTarget] = React.useState(Math.floor(Math.random() * 9));
+  const [message, setMessage] = React.useState('Pick the secret heart 💖');
+
+  const hearts = Array.from({ length: 9 }, (_, i) => i);
+
+  const handleClick = (i) => {
+    if (won) return;
+    if (i === target) {
+      setWon(true);
+      setMessage('You found it ✨ The letter is yours');
+    } else {
+      setMessage('Nope, try another heart 💌');
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-pink-100 flex items-center justify-center p-6">
+      <div className="max-w-xl w-full bg-white rounded-3xl shadow-2xl p-8 text-center">
+        <h1 className="text-4xl font-bold mb-3">For Nourséne 💖</h1>
+        <p className="text-gray-600 mb-6">Play the little heart game to unlock your letter</p>
+
+        {!won && (
+          <>
+            <p className="mb-4 font-medium">{message}</p>
+            <div className="grid grid-cols-3 gap-4">
+              {hearts.map((i) => (
+                <button
+                  key={i}
+                  onClick={() => handleClick(i)}
+                  className="text-4xl p-4 rounded-2xl shadow hover:scale-105 transition"
+                >
+                  💗
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+
+        {won && (
+          <div className="mt-6 text-left bg-pink-50 rounded-2xl p-6 shadow-inner">
+            <h2 className="text-2xl font-semibold mb-3">My Letter to You 💌</h2>
+            <p className="leading-8 text-lg text-gray-700">
+              Dear Nourséne, <br /><br />
+              Every day with you feels brighter and warmer. You make ordinary moments feel special,
+              and your smile is my favorite little piece of this world. I made this small site just
+              for you because I wanted you to know how much I love and appreciate you. 💖<br /><br />
+              Forever yours.
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
